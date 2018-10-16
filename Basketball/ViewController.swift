@@ -59,6 +59,10 @@ class ViewController: UIViewController {
         }
         
         backboardNode.position = SCNVector3(x: 0, y: 1, z: -5)
+        let physicsShape = SCNPhysicsShape(node: backboardNode, options: [SCNPhysicsShape.Option.type: SCNPhysicsShape.ShapeType.concavePolyhedron])    // to make hole in the hoop
+        let physicsBody = SCNPhysicsBody(type: .static, shape: physicsShape)
+        backboardNode.physicsBody = physicsBody
+
         sceneView.scene.rootNode.addChildNode(backboardNode)
     }
     
@@ -84,6 +88,13 @@ class ViewController: UIViewController {
         ball.materials = [material]
         let ballNode = SCNNode(geometry: ball)
         ballNode.position = cameraPosition
+        
+        let physicsShape = SCNPhysicsShape(node: ballNode, options: nil)
+        let physicsBody = SCNPhysicsBody(type: .dynamic, shape: physicsShape)
+        ballNode.physicsBody = physicsBody
+        
+        let forceVector: Float = 8
+        ballNode.physicsBody?.applyForce(SCNVector3(x: cameraOrientation.x * forceVector, y: (cameraOrientation.y + 0.5) * forceVector, z: cameraOrientation.z * forceVector), asImpulse: true)
         
         sceneView.scene.rootNode.addChildNode(ballNode)
     }
