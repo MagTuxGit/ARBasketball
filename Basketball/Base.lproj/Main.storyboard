@@ -21,13 +21,62 @@
                             <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1HE-6h-yXT">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                             </arscnView>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="CjS-Tg-vIc">
+                                <rect key="frame" x="73.5" y="599" width="228" height="44"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oOd-2L-j47" customClass="CustomButton" customModule="Basketball" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="60" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="R1D-Gr-gjM"/>
+                                            <constraint firstAttribute="width" constant="60" id="WYb-yJ-78Z"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <state key="normal" title="&lt; - &gt;">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="horizontalAction:" destination="BV1-FR-VrT" eventType="touchUpInside" id="i6e-92-wKW"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fUr-Jo-P4I" customClass="CustomButton" customModule="Basketball" customModuleProvider="target">
+                                        <rect key="frame" x="84" y="0.0" width="60" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="j8k-1c-geu"/>
+                                            <constraint firstAttribute="width" constant="60" id="r57-9p-5Vo"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <state key="normal" title="Stop">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="stopActions:" destination="BV1-FR-VrT" eventType="touchUpInside" id="FhE-qF-VWz"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dzg-kj-YPU" customClass="CustomButton" customModule="Basketball" customModuleProvider="target">
+                                        <rect key="frame" x="168" y="0.0" width="60" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="60" id="4xk-dT-7MB"/>
+                                            <constraint firstAttribute="height" constant="44" id="QCA-ad-g91"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <state key="normal" title="&lt; ~ &gt;">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="roundAction:" destination="BV1-FR-VrT" eventType="touchUpInside" id="9if-Vh-Ag9"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="1HE-6h-yXT" firstAttribute="top" secondItem="bGl-RM-fGX" secondAttribute="top" id="58i-Ui-mhZ"/>
                             <constraint firstItem="1HE-6h-yXT" firstAttribute="bottom" secondItem="bGl-RM-fGX" secondAttribute="bottom" id="5sg-vL-bVY"/>
+                            <constraint firstItem="CjS-Tg-vIc" firstAttribute="centerX" secondItem="PFu-1y-q4o" secondAttribute="centerX" id="SNY-N0-S6L"/>
                             <constraint firstItem="1HE-6h-yXT" firstAttribute="trailing" secondItem="bGl-RM-fGX" secondAttribute="trailing" id="f30-hb-k3h"/>
                             <constraint firstItem="1HE-6h-yXT" firstAttribute="leading" secondItem="bGl-RM-fGX" secondAttribute="leading" id="sID-D5-If5"/>
+                            <constraint firstItem="bGl-RM-fGX" firstAttribute="bottom" secondItem="CjS-Tg-vIc" secondAttribute="bottom" constant="24" id="xee-Lb-5dD"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="bGl-RM-fGX"/>
                     </view>

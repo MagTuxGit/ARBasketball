@@ -13,6 +13,7 @@ import ARKit
 class ViewController: UIViewController {
 
     @IBOutlet var sceneView: ARSCNView!
+    var backboardNode: SCNNode?
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
@@ -21,7 +22,7 @@ class ViewController: UIViewController {
         sceneView.delegate = self
         
         // Show statistics such as fps and timing information
-        sceneView.showsStatistics = true
+        //sceneView.showsStatistics = true
         
         // Create a new scene
         //let scene = SCNScene()
@@ -51,12 +52,11 @@ class ViewController: UIViewController {
     }
     
     //MARK: -
-    func addBackboard() {
-        guard let backboardScene = SCNScene(named: "art.scnassets/hoop.scn"),
-            let backboardNode = backboardScene.rootNode.childNode(withName: "backboard", recursively: false)
-            else {
-            return
-        }
+    func addBackboard()
+    {
+        guard let backboardScene = SCNScene(named: "art.scnassets/hoop.scn") else { return }
+        self.backboardNode = backboardScene.rootNode.childNode(withName: "backboard", recursively: false)
+        guard let backboardNode = backboardNode else { return }
         
         backboardNode.position = SCNVector3(x: 0, y: 1, z: -5)
         let physicsShape = SCNPhysicsShape(node: backboardNode, options: [SCNPhysicsShape.Option.type: SCNPhysicsShape.ShapeType.concavePolyhedron])    // to make hole in the hoop
@@ -66,7 +66,7 @@ class ViewController: UIViewController {
         sceneView.scene.rootNode.addChildNode(backboardNode)
         
         //horizontalAction(node: backboardNode)
-        roundAction(node: backboardNode)
+        //roundAction(node: backboardNode)
     }
     
     func horizontalAction(node: SCNNode) {
@@ -113,11 +113,28 @@ class ViewController: UIViewController {
         let physicsBody = SCNPhysicsBody(type: .dynamic, shape: physicsShape)
         ballNode.physicsBody = physicsBody
         
-        let forceVector: Float = 8
+        let forceVector: Float = 7
         ballNode.physicsBody?.applyForce(SCNVector3(x: cameraOrientation.x * forceVector, y: (cameraOrientation.y + 0.5) * forceVector, z: cameraOrientation.z * forceVector), asImpulse: true)
         
         sceneView.scene.rootNode.addChildNode(ballNode)
     }
+    
+    @IBAction func horizontalAction(_ sender: UIButton) {
+        if let backboardNode = backboardNode {
+            horizontalAction(node: backboardNode)
+        }
+    }
+    
+    @IBAction func stopActions(_ sender: UIButton) {
+        backboardNode?.removeAllActions()
+    }
+    
+    @IBAction func roundAction(_ sender: UIButton) {
+        if let backboardNode = backboardNode {
+            roundAction(node: backboardNode)
+        }
+    }
+    
 }
 
 // MARK: - ARSCNViewDelegate
